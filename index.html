@@ -1,0 +1,219 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2821
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!-- Copy and paste this entire code into ONE Podia Custom Code block -->\
+<style>\
+.dti-calculator-wrapper \{\
+    max-width: 600px;\
+    margin: 40px auto;\
+    padding: 30px;\
+    background: #f8f8f8;\
+    border-radius: 12px;\
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\
+\}\
+\
+.dti-calculator-wrapper h3 \{\
+    color: #F25F70;\
+    margin-bottom: 10px;\
+    font-size: 28px;\
+    text-align: center;\
+\}\
+\
+.dti-calculator-wrapper p \{\
+    text-align: center;\
+    color: #666;\
+    margin-bottom: 30px;\
+\}\
+\
+.dti-input-group \{\
+    margin-bottom: 20px;\
+\}\
+\
+.dti-input-group label \{\
+    display: block;\
+    margin-bottom: 8px;\
+    font-weight: 600;\
+    color: #444;\
+\}\
+\
+.dti-input-group input \{\
+    width: 100%;\
+    padding: 12px;\
+    font-size: 16px;\
+    border: 2px solid #ddd;\
+    border-radius: 8px;\
+    box-sizing: border-box;\
+\}\
+\
+.dti-input-group input:focus \{\
+    outline: none;\
+    border-color: #F25F70;\
+\}\
+\
+.dti-calculate-btn \{\
+    width: 100%;\
+    padding: 14px;\
+    background: #F25F70;\
+    color: white;\
+    border: none;\
+    border-radius: 8px;\
+    font-size: 18px;\
+    font-weight: 600;\
+    cursor: pointer;\
+    margin-top: 20px;\
+\}\
+\
+.dti-calculate-btn:hover \{\
+    background: #E84E5F;\
+\}\
+\
+.dti-results \{\
+    display: none;\
+    margin-top: 30px;\
+    padding: 25px;\
+    background: white;\
+    border-radius: 8px;\
+    border: 2px solid #F25F70;\
+\}\
+\
+.dti-result-item \{\
+    margin-bottom: 15px;\
+    padding-bottom: 15px;\
+    border-bottom: 1px solid #eee;\
+\}\
+\
+.dti-result-label \{\
+    font-size: 14px;\
+    color: #666;\
+\}\
+\
+.dti-result-value \{\
+    font-size: 24px;\
+    font-weight: 700;\
+    color: #F25F70;\
+\}\
+\
+.dti-total \{\
+    background: #FDE7EF;\
+    padding: 20px;\
+    border-radius: 8px;\
+    text-align: center;\
+    margin-top: 20px;\
+\}\
+\
+.dti-total-value \{\
+    font-size: 36px;\
+    font-weight: 700;\
+    color: #F25F70;\
+\}\
+\
+.dti-cta \{\
+    text-align: center;\
+    margin-top: 20px;\
+\}\
+\
+.dti-cta a \{\
+    display: inline-block;\
+    padding: 14px 28px;\
+    background: #F25F70;\
+    color: white;\
+    text-decoration: none;\
+    border-radius: 8px;\
+    font-weight: 600;\
+\}\
+\
+.dti-cta a:hover \{\
+    background: #E84E5F;\
+\}\
+</style>\
+\
+<div class="dti-calculator-wrapper">\
+    <h3>Calculate Your "Too Hard" Basket Cost</h3>\
+    <p>Discover how much ineffective problem solving is costing your organization annually</p>\
+    \
+    <div class="dti-input-group">\
+        <label>Team Size</label>\
+        <input type="number" id="dti-team-size" value="20" min="1">\
+    </div>\
+    \
+    <div class="dti-input-group">\
+        <label>Average Annual Salary</label>\
+        <input type="number" id="dti-avg-salary" value="65000" min="20000">\
+    </div>\
+    \
+    <div class="dti-input-group">\
+        <label>Productivity Loss (%) - Default: 30%</label>\
+        <input type="number" id="dti-productivity" value="30" min="10" max="50">\
+    </div>\
+    \
+    <button class="dti-calculate-btn" onclick="calculateDTICosts()">Calculate My Costs</button>\
+    \
+    <div class="dti-results" id="dti-results">\
+        <div class="dti-result-item">\
+            <div class="dti-result-label">Cost of Lost Productivity</div>\
+            <div class="dti-result-value" id="dti-productivity-cost">$0</div>\
+        </div>\
+        \
+        <div class="dti-result-item">\
+            <div class="dti-result-label">Lost Revenue</div>\
+            <div class="dti-result-value" id="dti-revenue-impact">$0</div>\
+        </div>\
+        \
+        <div class="dti-total">\
+            <div>Total Annual Cost of Your "Too Hard" Basket</div>\
+            <div class="dti-total-value" id="dti-total-cost">$0</div>\
+        </div>\
+        \
+        <div class="dti-cta">\
+            <p>Ready to transform these losses into incredible outcomes?</p>\
+            <a href="#contact">Get Unstuck in 55 Minutes \uc0\u8594 </a>\
+        </div>\
+    </div>\
+</div>\
+\
+<script>\
+function calculateDTICosts() \{\
+    // Get values\
+    var teamSize = parseInt(document.getElementById('dti-team-size').value) || 0;\
+    var avgSalary = parseInt(document.getElementById('dti-avg-salary').value) || 0;\
+    var productivityLoss = parseInt(document.getElementById('dti-productivity').value) / 100;\
+    \
+    // Calculate\
+    var totalSalaries = teamSize * avgSalary;\
+    var productivityCost = totalSalaries * productivityLoss;\
+    var estimatedRevenue = totalSalaries * 2.5;\
+    var revenueImpact = estimatedRevenue * 0.20;\
+    var totalCost = productivityCost + revenueImpact;\
+    \
+    // Format as currency\
+    function formatMoney(amount) \{\
+        return '$' + Math.round(amount).toLocaleString();\
+    \}\
+    \
+    // Display results\
+    document.getElementById('dti-productivity-cost').textContent = formatMoney(productivityCost);\
+    document.getElementById('dti-revenue-impact').textContent = formatMoney(revenueImpact);\
+    document.getElementById('dti-total-cost').textContent = formatMoney(totalCost);\
+    \
+    // Show results\
+    document.getElementById('dti-results').style.display = 'block';\
+    \
+    // Scroll to results\
+    document.getElementById('dti-results').scrollIntoView(\{ behavior: 'smooth' \});\
+\}\
+\
+// Calculate on Enter key\
+document.getElementById('dti-team-size').addEventListener('keypress', function(e) \{\
+    if (e.key === 'Enter') calculateDTICosts();\
+\});\
+document.getElementById('dti-avg-salary').addEventListener('keypress', function(e) \{\
+    if (e.key === 'Enter') calculateDTICosts();\
+\});\
+document.getElementById('dti-productivity').addEventListener('keypress', function(e) \{\
+    if (e.key === 'Enter') calculateDTICosts();\
+\});\
+</script>}
