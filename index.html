@@ -3,228 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calculate your too hard basket cost">
-    <title>Too Hard Basket Calculator</title>
+    <meta name="description" content="Calculate the cost of your too hard basket">
+    <meta http-equiv="X-Frame-Options" content="ALLOWALL">
+    <title>Too Hard Basket Cost Calculator - Design Thinker Institute</title>
+    
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+            padding: 20px;
+        }
+        
+        /* Main container */
+        .calculator-main {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Typography */
+        h1 {
+            color: #F25F70;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 35px;
+        }
+        
+        /* Form elements */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            transition: border-color 0.3s ease;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #F25F70;
+        }
+        
+        .help-text {
+            font-size: 13px;
+            color: #888;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        /* Calculate button */
+        .calculate-button {
+            width: 100%;
+            padding: 16px;
+            background: #F25F70;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .calculate-button:hover {
+            background: #E84E5F;
+        }
+        
+        /* Results section */
+        .results-container {
+            margin-top: 35px;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #F25F70;
+            display: none;
+        }
+        
+        .result-row {
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .result-row:last-of-type {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        
+        .result-amount {
+            font-size: 26px;
+            font-weight: 700;
+            color: #F25F70;
+        }
+        
+        /* Total section */
+        .total-section {
+            background: #FDE7EF;
+            margin: 25px -30px -30px;
+            padding: 25px 30px;
+            text-align: center;
+            border-radius: 0 0 6px 6px;
+        }
+        
+        .total-label {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .total-amount {
+            font-size: 38px;
+            font-weight: 700;
+            color: #F25F70;
+        }
+        
+        /* CTA section */
+        .cta-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .cta-text {
+            font-size: 16px;
+            color: #444;
+            margin-bottom: 16px;
+        }
+        
+        .cta-link {
+            display: inline-block;
+            padding: 14px 32px;
+            background: #F25F70;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .cta-link:hover {
+            background: #E84E5F;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 640px) {
+            .calculator-main {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .total-amount {
+                font-size: 32px;
+            }
+        }
+    </style>
 </head>
 <body>
-{\rtf1\ansi\ansicpg1252\cocoartf2821
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-
-\f0\fs24 \cf0 <!-- Copy and paste this entire code into ONE Podia Custom Code block -->\
-<style>\
-.dti-calculator-wrapper \{\
-    max-width: 600px;\
-    margin: 40px auto;\
-    padding: 30px;\
-    background: #f8f8f8;\
-    border-radius: 12px;\
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\
-\}\
-\
-.dti-calculator-wrapper h3 \{\
-    color: #F25F70;\
-    margin-bottom: 10px;\
-    font-size: 28px;\
-    text-align: center;\
-\}\
-\
-.dti-calculator-wrapper p \{\
-    text-align: center;\
-    color: #666;\
-    margin-bottom: 30px;\
-\}\
-\
-.dti-input-group \{\
-    margin-bottom: 20px;\
-\}\
-\
-.dti-input-group label \{\
-    display: block;\
-    margin-bottom: 8px;\
-    font-weight: 600;\
-    color: #444;\
-\}\
-\
-.dti-input-group input \{\
-    width: 100%;\
-    padding: 12px;\
-    font-size: 16px;\
-    border: 2px solid #ddd;\
-    border-radius: 8px;\
-    box-sizing: border-box;\
-\}\
-\
-.dti-input-group input:focus \{\
-    outline: none;\
-    border-color: #F25F70;\
-\}\
-\
-.dti-calculate-btn \{\
-    width: 100%;\
-    padding: 14px;\
-    background: #F25F70;\
-    color: white;\
-    border: none;\
-    border-radius: 8px;\
-    font-size: 18px;\
-    font-weight: 600;\
-    cursor: pointer;\
-    margin-top: 20px;\
-\}\
-\
-.dti-calculate-btn:hover \{\
-    background: #E84E5F;\
-\}\
-\
-.dti-results \{\
-    display: none;\
-    margin-top: 30px;\
-    padding: 25px;\
-    background: white;\
-    border-radius: 8px;\
-    border: 2px solid #F25F70;\
-\}\
-\
-.dti-result-item \{\
-    margin-bottom: 15px;\
-    padding-bottom: 15px;\
-    border-bottom: 1px solid #eee;\
-\}\
-\
-.dti-result-label \{\
-    font-size: 14px;\
-    color: #666;\
-\}\
-\
-.dti-result-value \{\
-    font-size: 24px;\
-    font-weight: 700;\
-    color: #F25F70;\
-\}\
-\
-.dti-total \{\
-    background: #FDE7EF;\
-    padding: 20px;\
-    border-radius: 8px;\
-    text-align: center;\
-    margin-top: 20px;\
-\}\
-\
-.dti-total-value \{\
-    font-size: 36px;\
-    font-weight: 700;\
-    color: #F25F70;\
-\}\
-\
-.dti-cta \{\
-    text-align: center;\
-    margin-top: 20px;\
-\}\
-\
-.dti-cta a \{\
-    display: inline-block;\
-    padding: 14px 28px;\
-    background: #F25F70;\
-    color: white;\
-    text-decoration: none;\
-    border-radius: 8px;\
-    font-weight: 600;\
-\}\
-\
-.dti-cta a:hover \{\
-    background: #E84E5F;\
-\}\
-</style>\
-\
-<div class="dti-calculator-wrapper">\
-    <h3>Calculate Your "Too Hard" Basket Cost</h3>\
-    <p>Discover how much ineffective problem solving is costing your organization annually</p>\
-    \
-    <div class="dti-input-group">\
-        <label>Team Size</label>\
-        <input type="number" id="dti-team-size" value="20" min="1">\
-    </div>\
-    \
-    <div class="dti-input-group">\
-        <label>Average Annual Salary</label>\
-        <input type="number" id="dti-avg-salary" value="65000" min="20000">\
-    </div>\
-    \
-    <div class="dti-input-group">\
-        <label>Productivity Loss (%) - Default: 30%</label>\
-        <input type="number" id="dti-productivity" value="30" min="10" max="50">\
-    </div>\
-    \
-    <button class="dti-calculate-btn" onclick="calculateDTICosts()">Calculate My Costs</button>\
-    \
-    <div class="dti-results" id="dti-results">\
-        <div class="dti-result-item">\
-            <div class="dti-result-label">Cost of Lost Productivity</div>\
-            <div class="dti-result-value" id="dti-productivity-cost">$0</div>\
-        </div>\
-        \
-        <div class="dti-result-item">\
-            <div class="dti-result-label">Lost Revenue</div>\
-            <div class="dti-result-value" id="dti-revenue-impact">$0</div>\
-        </div>\
-        \
-        <div class="dti-total">\
-            <div>Total Annual Cost of Your "Too Hard" Basket</div>\
-            <div class="dti-total-value" id="dti-total-cost">$0</div>\
-        </div>\
-        \
-        <div class="dti-cta">\
-            <p>Ready to transform these losses into incredible outcomes?</p>\
-            <a href="#contact">Get Unstuck in 55 Minutes \uc0\u8594 </a>\
-        </div>\
-    </div>\
-</div>\
-\
-<script>\
-function calculateDTICosts() \{\
-    // Get values\
-    var teamSize = parseInt(document.getElementById('dti-team-size').value) || 0;\
-    var avgSalary = parseInt(document.getElementById('dti-avg-salary').value) || 0;\
-    var productivityLoss = parseInt(document.getElementById('dti-productivity').value) / 100;\
-    \
-    // Calculate\
-    var totalSalaries = teamSize * avgSalary;\
-    var productivityCost = totalSalaries * productivityLoss;\
-    var estimatedRevenue = totalSalaries * 2.5;\
-    var revenueImpact = estimatedRevenue * 0.20;\
-    var totalCost = productivityCost + revenueImpact;\
-    \
-    // Format as currency\
-    function formatMoney(amount) \{\
-        return '$' + Math.round(amount).toLocaleString();\
-    \}\
-    \
-    // Display results\
-    document.getElementById('dti-productivity-cost').textContent = formatMoney(productivityCost);\
-    document.getElementById('dti-revenue-impact').textContent = formatMoney(revenueImpact);\
-    document.getElementById('dti-total-cost').textContent = formatMoney(totalCost);\
-    \
-    // Show results\
-    document.getElementById('dti-results').style.display = 'block';\
-    \
-    // Scroll to results\
-    document.getElementById('dti-results').scrollIntoView(\{ behavior: 'smooth' \});\
-\}\
-\
-// Calculate on Enter key\
-document.getElementById('dti-team-size').addEventListener('keypress', function(e) \{\
-    if (e.key === 'Enter') calculateDTICosts();\
-\});\
-document.getElementById('dti-avg-salary').addEventListener('keypress', function(e) \{\
-    if (e.key === 'Enter') calculateDTICosts();\
-\});\
-document.getElementById('dti-productivity').addEventListener('keypress', function(e) \{\
-    if (e.key === 'Enter') calculateDTICosts();\
-\});\
-</script>}
+    <div class="calculator-main">
+        <h1>Calculate Your "Too Hard" Basket Cost</h1>
+        <p class="subtitle">Discover how much ineffective problem solving is costing your organization annually</p>
+        
+        <form id="calculatorForm">
+            <div class="form-group">
+                <label for="teamSize">Team Size</label>
+                <input type="number" id="teamSize" value="20" min="1" max="10000" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="avgSalary">Average Annual Salary</label>
+                <input type="number" id="avgSalary" value="65000" min="20000" max="500000" required>
+                <p class="help-text">Average salary of team members</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="productivityLoss">Productivity Loss (%)</label>
+                <input type="number" id="productivityLoss" value="30" min="10" max="50" required>
+                <p class="help-text">Research shows 30% average productivity loss from ineffective problem solving</p>
+            </div>
+            
+            <button type="button" class="calculate-button" onclick="performCalculation()">
+                Calculate My Costs →
+            </button>
+        </form>
+        
+        <div id="results" class="results-container">
+            <div class="result-row">
+                <div class="result-label">Cost of Lost Productivity</div>
+                <div class="result-amount" id="productivityCost">$0</div>
+            </div>
+            
+            <div class="result-row">
+                <div class="result-label">Lost Revenue</div>
+                <div class="result-amount" id="revenueLoss">$0</div>
+            </div>
+            
+            <div class="total-section">
+                <div class="total-label">Total Annual Cost of Your "Too Hard" Basket</div>
+                <div class="total-amount" id="totalCost">$0</div>
+            </div>
+        </div>
+        
+        <div class="cta-section" id="ctaSection" style="display: none;">
+            <p class="cta-text">Ready to transform these losses into incredible outcomes?</p>
+            <a href="https://www.designthinkerinstitute.com/contact" class="cta-link">
+                Get Unstuck in 55 Minutes →
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+            }).format(Math.round(amount));
+        }
+        
+        function performCalculation() {
+            // Get input values
+            const teamSize = parseInt(document.getElementById('teamSize').value) || 0;
+            const avgSalary = parseInt(document.getElementById('avgSalary').value) || 0;
+            const productivityLoss = parseInt(document.getElementById('productivityLoss').value) / 100 || 0;
+            
+            // Perform calculations
+            const totalSalaries = teamSize * avgSalary;
+            const productivityCost = totalSalaries * productivityLoss;
+            const estimatedRevenue = totalSalaries * 2.5;
+            const revenueLoss = estimatedRevenue * 0.20;
+            const totalCost = productivityCost + revenueLoss;
+            
+            // Update display
+            document.getElementById('productivityCost').textContent = formatCurrency(productivityCost);
+            document.getElementById('revenueLoss').textContent = formatCurrency(revenueLoss);
+            document.getElementById('totalCost').textContent = formatCurrency(totalCost);
+            
+            // Show results
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('ctaSection').style.display = 'block';
+            
+            // Smooth scroll to results
+            document.getElementById('results').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'nearest'
+            });
+        }
+        
+        // Calculate on Enter key
+        document.getElementById('calculatorForm').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performCalculation();
+            }
+        });
+        
+        // Auto-calculate on page load
+        window.addEventListener('load', function() {
+            performCalculation();
+        });
+    </script>
 </body>
 </html>
